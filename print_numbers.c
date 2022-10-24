@@ -22,3 +22,14 @@ int	ft_print_d_i(int c)
 	free(str);
 	return (cont);
 }
+
+int	ft_print_u(unsigned int c)
+{
+	char	*str;
+	int		cont;
+
+	str = ft_uns_itoa(c);
+	cont = ft_putstr(str);
+	free(str);
+	return (cont);
+}
