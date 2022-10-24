@@ -30,7 +30,8 @@ static int	ft_what_is(va_list ptr, char c)
 		return (ft_print_xmay(va_arg(ptr, int)));
 	if (c == '%')
 	{
-		write (1, "%", 1);
+		if (write (1, "%", 1) == -1)
+			return (-1);
 		return (1);
 	}
 	return (0);
@@ -54,7 +55,8 @@ int	ft_printf(const char *str, ...)
 		}
 		else
 		{
-			write (1, &str[cont_s], 1);
+			if (write (1, &str[cont_s], 1) == -1)
+				return (-1);
 			cont++;
 			cont_s++;
 		}
