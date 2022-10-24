@@ -26,7 +26,7 @@ static int	ft_printp(unsigned long long p)
 	}
 	else
 	{
-		if (write (1, &str[p], 1))
+		if (write (1, &str[p], 1) == -1)
 			return (-1);
 		cont++;
 	}
@@ -40,6 +40,7 @@ int	ft_print_p(void *p)
 	cont = 0;
 	if (!p)
 		return (ft_putstr("0x0"));
-	write (1, "0x", 2);
+	if (write (1, "0x", 2) == -1)
+		return (-1)
 	return (ft_printp((unsigned long long) p) + 2);
 }
