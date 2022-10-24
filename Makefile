@@ -31,7 +31,6 @@ DEP             = $(addsuffix .d, $(basename $(OBJ)))
 CC = gcc
 
 CFLAGS 			= -Werror -Wall -Wextra -MMD $(INC)
-PTHREADS        = -lpthread
 RM_DIR          = rm -rf
 MKDIR           = mkdir -p
 
