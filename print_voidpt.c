@@ -26,7 +26,8 @@ static int	ft_printp(unsigned long long p)
 	}
 	else
 	{
-		write (1, &str[p], 1);
+		if (write (1, &str[p], 1))
+			return (-1);
 		cont++;
 	}
 	return (cont);
