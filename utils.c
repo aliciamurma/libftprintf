@@ -4,21 +4,25 @@ int	ft_putnumber(int n)
 {
 	if (n == -2147483648)
 	{
-		ft_putstr("-2147483648");
+		if (ft_putstr("-2147483648") == -1)
+			return (-1);
 		return (11);
 	}	
 	if (n < 0)
 	{
 		n = n * -1;
-		ft_putchar('-');
+		if (ft_putchar('-') == -1)
+			return (-1);
 	}
 	if (n > 9)
 	{
 		ft_putnumber(n / 10);
-		ft_putchar(n % 10 + '0');
+		if (ft_putchar(n % 10 + '0') == -1)
+			return (-1);
 	}
 	else
-		ft_putchar(n + '0');
+		if (ft_putchar(n + '0') == -1)
+			return (-1);
 	return (n);
 }
 
@@ -48,7 +52,8 @@ int	ft_putstr(char *s)
 		return (0);
 	while (s[cont] != '\0')
 	{
-		ft_putchar(s[cont]);
+		if (ft_putchar(s[cont]) == -1)
+			return (-1);
 		cont++;
 	}
 	return (cont);
