@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libftprintf.c                                      :+:      :+:    :+:   */
+/*   printf.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amurcia- <amurcia-@student.42barcel>       +#+  +:+       +#+        */
+/*   By: amurcia- <amurcia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 17:58:14 by amurcia-          #+#    #+#             */
-/*   Updated: 2022/06/04 10:59:37 by amurcia-         ###   ########.fr       */
+/*   Updated: 2022/10/24 15:23:31 by amurcia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ int	ft_printf(const char *str, ...)
 	va_list	ptr;
 	int		cont;
 	int		cont_s;
+	int		ret;
 
 	cont = 0;
 	cont_s = 0;
@@ -50,7 +51,10 @@ int	ft_printf(const char *str, ...)
 	{
 		if (str[cont_s] == '%' && str[cont_s + 1])
 		{
-			cont += ft_what_is(ptr, str[cont_s + 1]);
+			ret = ft_what_is(ptr, str[cont_s + 1]);
+			if (ret == -1)
+				return (-1);
+			cont = cont + ret;
 			cont_s += 2;
 		}
 		else

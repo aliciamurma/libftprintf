@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amurcia- <amurcia-@student.42barcel>       +#+  +:+       +#+        */
+/*   By: amurcia- <amurcia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 16:33:13 by amurcia-          #+#    #+#             */
-/*   Updated: 2022/05/30 16:55:16 by amurcia-         ###   ########.fr       */
+/*   Updated: 2022/10/24 15:40:47 by amurcia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ char	*ft_itoa(int n);
 int		ft_putnumber(int n);
 int		ft_strlen(char *str);
 int		ft_putstr(char *s);
-void	ft_putchar(char c);
+int		ft_putchar(char c);
 char	*ft_uns_itoa(unsigned int n);
 
 int		ft_print_c(int c);

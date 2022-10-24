@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_p.c                                       :+:      :+:    :+:   */
+/*   print_voidpt.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amurcia- <amurcia-@student.42barcel>       +#+  +:+       +#+        */
+/*   By: amurcia- <amurcia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 20:56:53 by amurcia-          #+#    #+#             */
-/*   Updated: 2022/06/04 13:25:54 by amurcia-         ###   ########.fr       */
+/*   Updated: 2022/10/24 15:32:01 by amurcia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,6 @@ int	ft_print_p(void *p)
 	if (!p)
 		return (ft_putstr("0x0"));
 	if (write (1, "0x", 2) == -1)
-		return (-1)
+		return (-1);
 	return (ft_printp((unsigned long long) p) + 2);
 }
