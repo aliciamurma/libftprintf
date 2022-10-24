@@ -37,6 +37,21 @@ void	ft_putchar(char c)
 	write (1, &c, 1);
 }
 
+int	ft_putstr(char *s)
+{
+	int	cont;
+
+	cont = 0;
+	if (!s)
+		return (0);
+	while (s[cont] != '\0')
+	{
+		ft_putchar(s[cont]);
+		cont++;
+	}
+	return (cont);
+}
+
 static int	ft_len(unsigned int n)
 {
 	unsigned int	len;
