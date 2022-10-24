@@ -12,6 +12,12 @@
 
 #include "ft_printf.h"
 
+int	ft_print_c(int c)
+{
+	write (1, &c, 1);
+	return (1);
+}
+
 int	ft_print_s(char *str)
 {
 	int	cont;
