@@ -12,7 +12,7 @@
 
 NAME = libftprintf.a
 
-SRC = ft_printf.c ft_print_c.c ft_print_s.c ft_print_x.c ft_print_d_i.c ft_print_u.c ft_print_p.c ft_print_xmay.c ft_putnumber.c ft_strlen.c ft_itoa.c ft_putstr.c ft_putchar.c ft_uns_itoa.c
+SRC = ft_printf.c ft_print_c.c ft_print_s.c ft_print_x.c ft_print_d_i.c ft_print_u.c ft_print_p.c ft_print_xmay.c utils.c ft_itoa.c
 
 OBJ = $(SRC:%.c=%.o)
 
