@@ -10,32 +10,53 @@
 #                                                                              #
 # **************************************************************************** #
 
+
+# COLORS
+GREEN			:= \033[32m
+NC				:= \033[m
+
 NAME = libftprintf.a
 
-SRC = ft_printf.c print_chars.c print_numbers.c ft_print_u.c ft_print_p.c print_hexa.c utils.c ft_itoa.c
 
-OBJ = $(SRC:%.c=%.o)
+SRC_DIR = src
+OBJ_DIR = obj
+INC_DIR = inc
 
-HEADER = ft_printf.h
+SRC = printf.c print_chars.c print_numbers.c print_voidpt.c print_hexa.c utils.c ft_itoa.c
+INC = -I $(INC_DIR)
+	  
+OBJ             = $(addprefix $(OBJ_DIR)/,$(SRC:.c=.o))
+DEP             = $(addsuffix .d, $(basename $(OBJ)))
 
 CC = gcc
-FLAGS = -Werror -Wextra -Wall
 
-%.o : %.c
-	@$(CC) ${FLAGS} -c $< -o $@
+CFLAGS 			= -Werror -Wall -Wextra -MMD $(INC)
+PTHREADS        = -lpthread
+RM_DIR          = rm -rf
+MKDIR           = mkdir -p
+
+$(OBJ_DIR)/%.o:$(SRC_DIR)/%.c Makefile
+	@$(MKDIR) $(dir $@)
+	@gcc -c -g $(CFLAGS) -o $@ $<
+	@echo "Compiling..."
 
 all: $(NAME)
+
+-include $(DEP)
 
 $(NAME): $(OBJ) $(HEADER)
 	@ar -crs $(NAME) $(OBJ)
 	@ranlib $(NAME)
+	@echo "$(GREEN)$(NAME) compiled!$(NC)"
 
-clean:
-	@rm -f $(OBJ) 
+clean :
+	@$(RM) $(OBJ)
+	@$(RM_DIR) $(OBJ_DIR)
+	@echo "$(GREEN)$(NAME) cleaned!$(NC)"
 
-fclean: clean
-	@rm -f $(NAME)
+fclean : clean
+	@$(RM) $(NAME)
 
-re: fclean all
+re : fclean all
 
-.PHONY: all clean fclean re
+PHONY: clean re fclean all
