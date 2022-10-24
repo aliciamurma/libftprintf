@@ -12,9 +12,72 @@
 
 #include "ft_printf.h"
 
-static int	ft_len(int n)
+static int	ft_get_digits(int n)
 {
-	int	len;
+	int	d;
+
+	d = 0;
+	if (n < 0)
+	{
+		d++;
+		while (n <= -1)
+		{
+			n /= 10;
+			d++;
+		}
+	}
+	else
+	{
+		while (n > 0)
+		{
+			n /= 10;
+			d++;
+		}
+	}
+	return (d);
+}
+
+static void	ft_transform_number(char *num, int digits, int n)
+{
+	int	i;
+
+	i = 0;
+	num[digits] = '\0';
+	if (n < 0)
+	{
+		num[0] = '-';
+		i++;
+	}
+	while (i < digits)
+	{
+		if (n < 0)
+			num[digits - i] = -(n % 10) + '0';
+		else
+			num[digits - i - 1] = (n % 10) + '0';
+		i++;
+		n /= 10;
+	}
+}
+
+char	*ft_itoa(int n)
+{
+	int		digits;
+	char	*num;
+
+	if (n == 0)
+		digits = 1;
+	else
+		digits = ft_get_digits(n);
+	num = (char *)malloc(sizeof(char) * (digits + 1));
+	if (num == NULL)
+		return (NULL);
+	ft_transform_number(num, digits, n);
+	return (num);
+}
+
+static int	ft_len(unsigned int n)
+{
+	unsigned int	len;
 
 	len = 0;
 	if (n <= 0)
@@ -27,58 +90,15 @@ static int	ft_len(int n)
 	return (len);
 }
 
-static char	*ft_min(int n, char *str)
+char	*ft_uns_itoa(unsigned int n)
 {
-	if (n == -2147483648)
-	{
-		str[0] = '-';
-		str[1] = '2';
-		str[2] = '1';
-		str[3] = '4';
-		str[4] = '7';
-		str[5] = '4';
-		str[6] = '8';
-		str[7] = '3';
-		str[8] = '6';
-		str[9] = '4';
-		str[10] = '8';
-	}
-	return (str);
-}
-
-static char	*ft_negatives(int n, char *str, int len)
-{
-	if (n == -2147483648)
-	{
-		ft_min(n, str);
-		return (str);
-	}
-	if (n < 0)
-		str[0] = '-';
-	while (len > 1 && n <= -10)
-	{
-		str[len - 1] = (((n * -1) % 10) + '0');
-		n = (n / 10);
-		len--;
-	}
-	if (n > -10 && n <= 0 && len <= 2)
-		str[len - 1] = (n + '0');
-	if (n > -10 && n <= 0 && len <= 2)
-		str[len - 1] = ((n * -1) + '0');
-	if (n == 0)
-		str[len - 1] = 0;
-	return (str);
-}
-
-char	*ft_itoa(int n)
-{
-	char	*str;
-	int		len;
+	char			*str;
+	unsigned int	len;
 
 	len = ft_len(n);
-	str = (char *)malloc(sizeof(char) * len + 1);
+	str = malloc(sizeof(char) * len + 1);
 	if (!str)
-		return (0);
+		return (NULL);
 	str[len] = '\0';
 	if (n == 0)
 	{
@@ -93,6 +113,5 @@ char	*ft_itoa(int n)
 	}
 	if (n >= 0 && n < 10)
 		str[len - 1] = (n + '0');
-	str = ft_negatives(n, str, len);
 	return (str);
 }
