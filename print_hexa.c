@@ -31,3 +31,23 @@ int	ft_print_x(unsigned int c)
 	}
 	return (cont);
 }
+
+int	ft_print_xmay(unsigned int c)
+{
+	int				cont;
+	char			*str;
+
+	str = "0123456789ABCDEF";
+	cont = 0;
+	if (c >= 16)
+	{
+		cont = cont + ft_print_xmay(c / 16);
+		cont = cont + ft_print_xmay(c % 16);
+	}
+	else
+	{
+		write (1, &str[c], 1);
+		cont++;
+	}
+	return (cont);
+}
